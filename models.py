@@ -19,7 +19,7 @@ class EEGFeatNet(nn.Module):
     def forward(self, x):
         out, _ = self.bilstm(x)
 
-        return out.reshape(out.shape[0], -1)
+        return F.elu(out.reshape(out.shape[0], -1))
     
 class EEGCNN(nn.Module):
     def __init__(self, in_channels, out1, out2, kernel_size=3) -> None:
